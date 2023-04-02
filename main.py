@@ -3,8 +3,10 @@ def hash_phone_number(phone_number):
     if len(phone_number) % 2 == 1:
         left_half = phone_number[:half_length]
         right_half = phone_number[-half_length-1::-1]
-        middle_digit = phone_number[half_length]
-        hashed_value = int(left_half) * (int(right_half) + int(middle_digit)) % 10
+        if left_half == '':
+            left_half = str(int(right_half) + 1)
+        middle_digit = int(phone_number[half_length])
+        hashed_value = int(left_half) * (int(right_half) + middle_digit) % 10
     else:
         left_half = phone_number[:half_length]
         right_half = phone_number[half_length:]
